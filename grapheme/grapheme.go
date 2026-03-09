@@ -6,6 +6,17 @@ import (
 	"github.com/charmbracelet/xunicode/internal/segmenter"
 )
 
+var trie = newGraphemeTrie(0)
+
+var ruleData = segmenter.RuleBreakData{
+	PropertyLookup:        trie.lookup,
+	BreakStateTable:       breakTable[:],
+	PropertyCount:         stride,
+	LastCodepointProperty: lastCP,
+	SOTProperty:           sot,
+	EOTProperty:           eot,
+}
+
 // Segmenter iterates over the grapheme clusters in a byte slice.
 // The usage pattern is:
 //
@@ -37,7 +48,11 @@ func (g *Segmenter) Next() bool {
 		b := input[pos]
 		if b < 0x80 && b != '\r' && b != '\n' {
 			if pos+1 >= len(input) || input[pos+1] < 0x80 {
-				g.s.FastForward(pos+1, 0)
+				nprop := Other
+				if b < 0x20 {
+					nprop = Control
+				}
+				g.s.FastForward(pos+1, uint8(nprop))
 				return true
 			}
 		}

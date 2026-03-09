@@ -62,7 +62,6 @@ func pack(x interface{}, c *Config) (packed uint64, nBit uint, err error) {
 		v := v.Field(i)
 		field := t.Field(i)
 		f, err := parseField(field)
-
 		if err != nil {
 			return 0, 0, err
 		}

@@ -63,11 +63,9 @@ func keepRanges(p *Parser) {
 	p.keepRanges = true
 }
 
-var (
-	// KeepRanges prevents the expansion of ranges. The raw ranges can be
-	// obtained by calling Range(0) on the parser.
-	KeepRanges Option = keepRanges
-)
+// KeepRanges prevents the expansion of ranges. The raw ranges can be
+// obtained by calling Range(0) on the parser.
+var KeepRanges Option = keepRanges
 
 // The Part option register a handler for lines starting with a '@'. The text
 // after a '@' is available as the first field. Comments are handled as usual.

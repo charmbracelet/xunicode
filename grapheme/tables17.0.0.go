@@ -4,8 +4,6 @@
 
 package grapheme
 
-import "github.com/charmbracelet/xunicode/internal/segmenter"
-
 // UnicodeVersion is the Unicode version from which the tables in this package are derived.
 const UnicodeVersion = "17.0.0"
 
@@ -1836,16 +1834,6 @@ var breakTable = [...]uint8{
 	253, 253, 253, 253, 255, 255, 253, 253, 255, 253, 253, 253, 253, 253, 253, 21, 255, 21, 253, 253, 253, 253, 253, 253,
 	255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
 	253, 253, 253, 253, 255, 255, 253, 253, 255, 253, 253, 253, 253, 253, 253, 255, 253, 255, 253, 253, 253, 253, 253, 253,
-}
-
-var trie = graphemeTrie{}
-var ruleData = segmenter.RuleBreakData{
-	PropertyLookup:        trie.lookup,
-	BreakStateTable:       breakTable[:],
-	PropertyCount:         24,
-	LastCodepointProperty: 17,
-	SOTProperty:           22,
-	EOTProperty:           23,
 }
 
 // Total table size 16640 bytes (16KiB); checksum: 811C9DC5

@@ -3,7 +3,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"unicode"
 
@@ -58,7 +57,6 @@ func genTables() {
 	w := gen.NewCodeWriter()
 	defer w.WriteVersionedGoFile("tables.go", "sentence")
 
-	fmt.Fprintf(w, "import %q\n\n", "github.com/charmbracelet/xunicode/internal/segmenter")
 	gen.WriteUnicodeVersion(w)
 
 	t := triegen.NewTrie("sentence")
@@ -75,7 +73,7 @@ func genTables() {
 
 	rules := buildRules()
 	bt := segmenter.Build(rules, uint8(stride), uint8(sot), uint8(eot), uint8(lastCP))
-	segmenter.WriteBreakTable(w, "ruleData", bt, "sentenceTrie", 0)
+	segmenter.WriteBreakTable(w, bt)
 }
 
 func buildRules() []segmenter.Rule {
@@ -145,19 +143,19 @@ func buildRules() []segmenter.Rule {
 
 	// ATerm row: SB6 + SB8 + SB8a + SB9 + SB11
 	atermOverrides := map[uint8]uint8{
-		uint8(Numeric):   segmenter.Keep,                   // SB6
-		uint8(Close):     interm(uint8(ATermClose)),        // SB9
-		uint8(Sp):        interm(uint8(ATermCloseSp)),      // SB9
-		uint8(Sep):       interm(uint8(ATermCloseSpPSep)),  // SB9/SB11
-		uint8(LF):        interm(uint8(ATermCloseSpPSep)),  // SB9/SB11
-		uint8(CR):        interm(uint8(ATermCloseSpCR)),    // SB9/SB11
-		uint8(Extend):    idx(uint8(ATerm)),                // SB5
-		uint8(Format):    idx(uint8(ATerm)),                // SB5
-		uint8(SContinue): segmenter.Keep,                   // SB8a
-		uint8(ATerm):     segmenter.Keep,                   // SB8a
-		uint8(STerm):     segmenter.Keep,                   // SB8a
-		uint8(Other):     idx(uint8(ATermCloseSpSB8)),      // SB8
-		uint8(Lower):     segmenter.Keep,                   // SB8
+		uint8(Numeric):   segmenter.Keep,                  // SB6
+		uint8(Close):     interm(uint8(ATermClose)),       // SB9
+		uint8(Sp):        interm(uint8(ATermCloseSp)),     // SB9
+		uint8(Sep):       interm(uint8(ATermCloseSpPSep)), // SB9/SB11
+		uint8(LF):        interm(uint8(ATermCloseSpPSep)), // SB9/SB11
+		uint8(CR):        interm(uint8(ATermCloseSpCR)),   // SB9/SB11
+		uint8(Extend):    idx(uint8(ATerm)),               // SB5
+		uint8(Format):    idx(uint8(ATerm)),               // SB5
+		uint8(SContinue): segmenter.Keep,                  // SB8a
+		uint8(ATerm):     segmenter.Keep,                  // SB8a
+		uint8(STerm):     segmenter.Keep,                  // SB8a
+		uint8(Other):     idx(uint8(ATermCloseSpSB8)),     // SB8
+		uint8(Lower):     segmenter.Keep,                  // SB8
 	}
 	rules = append(rules, segmenter.OverrideRule{
 		States:    p(uint8(ATerm)),
@@ -239,14 +237,14 @@ func buildRules() []segmenter.Rule {
 	rules = append(rules, segmenter.OverrideRule{
 		States: p(ATermCloseSpSB8),
 		Overrides: map[uint8]uint8{
-			uint8(Lower):     segmenter.Keep,                // SB8 completion
-			uint8(Close):     idx(uint8(ATermCloseSpSB8)),   // SB8 scan
-			uint8(Sp):        idx(uint8(ATermCloseSpSB8)),   // SB8 scan
-			uint8(Numeric):   idx(uint8(ATermCloseSpSB8)),   // SB8 scan
-			uint8(Other):     idx(uint8(ATermCloseSpSB8)),   // SB8 scan
-			uint8(SContinue): idx(uint8(ATermCloseSpSB8)),   // SB8 scan
-			uint8(Extend):    idx(uint8(ATermCloseSpSB8)),   // SB5
-			uint8(Format):    idx(uint8(ATermCloseSpSB8)),   // SB5
+			uint8(Lower):     segmenter.Keep,              // SB8 completion
+			uint8(Close):     idx(uint8(ATermCloseSpSB8)), // SB8 scan
+			uint8(Sp):        idx(uint8(ATermCloseSpSB8)), // SB8 scan
+			uint8(Numeric):   idx(uint8(ATermCloseSpSB8)), // SB8 scan
+			uint8(Other):     idx(uint8(ATermCloseSpSB8)), // SB8 scan
+			uint8(SContinue): idx(uint8(ATermCloseSpSB8)), // SB8 scan
+			uint8(Extend):    idx(uint8(ATermCloseSpSB8)), // SB5
+			uint8(Format):    idx(uint8(ATermCloseSpSB8)), // SB5
 		},
 		WipeValue: segmenter.NoMatch,
 	})

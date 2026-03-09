@@ -264,20 +264,34 @@ func TestRegionalIndicator(t *testing.T) {
 		want  []string
 	}{
 		{"one_pair", "\U0001F1E9\U0001F1EA", []string{"\U0001F1E9\U0001F1EA"}},
-		{"two_pairs", "\U0001F1E9\U0001F1EA\U0001F1FA\U0001F1F8",
-			[]string{"\U0001F1E9\U0001F1EA", "\U0001F1FA\U0001F1F8"}},
-		{"three_RI", "\U0001F1E9\U0001F1EA\U0001F1FA",
-			[]string{"\U0001F1E9\U0001F1EA", "\U0001F1FA"}},
-		{"RI_pair_then_EB", "\U0001F1E9\U0001F1EA\U0001F3F3",
-			[]string{"\U0001F1E9\U0001F1EA", "\U0001F3F3"}},
-		{"RI_pair_then_AL", "\U0001F1E9\U0001F1EAa",
-			[]string{"\U0001F1E9\U0001F1EA", "a"}},
-		{"RI_pair_then_ID", "\U0001F1E9\U0001F1EA\u4E00",
-			[]string{"\U0001F1E9\U0001F1EA", "\u4E00"}},
-		{"EB_EM_RI_pair", "\U0001F44D\U0001F3FD\U0001F1E9\U0001F1EA",
-			[]string{"\U0001F44D\U0001F3FD", "\U0001F1E9\U0001F1EA"}},
-		{"RI_pair_then_rainbow_flag", "\U0001F1E9\U0001F1EA\U0001F3F3\uFE0F\u200D\U0001F308",
-			[]string{"\U0001F1E9\U0001F1EA", "\U0001F3F3\uFE0F\u200D\U0001F308"}},
+		{
+			"two_pairs", "\U0001F1E9\U0001F1EA\U0001F1FA\U0001F1F8",
+			[]string{"\U0001F1E9\U0001F1EA", "\U0001F1FA\U0001F1F8"},
+		},
+		{
+			"three_RI", "\U0001F1E9\U0001F1EA\U0001F1FA",
+			[]string{"\U0001F1E9\U0001F1EA", "\U0001F1FA"},
+		},
+		{
+			"RI_pair_then_EB", "\U0001F1E9\U0001F1EA\U0001F3F3",
+			[]string{"\U0001F1E9\U0001F1EA", "\U0001F3F3"},
+		},
+		{
+			"RI_pair_then_AL", "\U0001F1E9\U0001F1EAa",
+			[]string{"\U0001F1E9\U0001F1EA", "a"},
+		},
+		{
+			"RI_pair_then_ID", "\U0001F1E9\U0001F1EA\u4E00",
+			[]string{"\U0001F1E9\U0001F1EA", "\u4E00"},
+		},
+		{
+			"EB_EM_RI_pair", "\U0001F44D\U0001F3FD\U0001F1E9\U0001F1EA",
+			[]string{"\U0001F44D\U0001F3FD", "\U0001F1E9\U0001F1EA"},
+		},
+		{
+			"RI_pair_then_rainbow_flag", "\U0001F1E9\U0001F1EA\U0001F3F3\uFE0F\u200D\U0001F308",
+			[]string{"\U0001F1E9\U0001F1EA", "\U0001F3F3\uFE0F\u200D\U0001F308"},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -362,12 +376,18 @@ func TestEmojiZWJ(t *testing.T) {
 		{"technologist", "🧑\u200d💻", []string{"🧑\u200d💻"}},
 		{"couple_with_heart", "👩\u200d❤\ufe0f\u200d👨", []string{"👩\u200d❤\ufe0f\u200d👨"}},
 		{"rainbow_flag", "🏳\ufe0f\u200d🌈", []string{"🏳\ufe0f\u200d🌈"}},
-		{"two_families", "👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦",
-			[]string{"👨\u200d👩\u200d👧\u200d👦", "👨\u200d👩\u200d👧\u200d👦"}},
-		{"family_then_space_text", "👨\u200d👩\u200d👧\u200d👦 hello",
-			[]string{"👨\u200d👩\u200d👧\u200d👦 ", "hello"}},
-		{"emoji_zwj_space_emoji_zwj", "🧑\u200d💻 🧑\u200d💻",
-			[]string{"🧑\u200d💻 ", "🧑\u200d💻"}},
+		{
+			"two_families", "👨\u200d👩\u200d👧\u200d👦👨\u200d👩\u200d👧\u200d👦",
+			[]string{"👨\u200d👩\u200d👧\u200d👦", "👨\u200d👩\u200d👧\u200d👦"},
+		},
+		{
+			"family_then_space_text", "👨\u200d👩\u200d👧\u200d👦 hello",
+			[]string{"👨\u200d👩\u200d👧\u200d👦 ", "hello"},
+		},
+		{
+			"emoji_zwj_space_emoji_zwj", "🧑\u200d💻 🧑\u200d💻",
+			[]string{"🧑\u200d💻 ", "🧑\u200d💻"},
+		},
 		{"thumbsup_skin_tone", "👍🏽", []string{"👍🏽"}},
 		{"AL_ZWJ_AL_no_break", "a\u200db", []string{"a\u200db"}},
 	}

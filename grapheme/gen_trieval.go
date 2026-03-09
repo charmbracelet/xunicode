@@ -10,24 +10,24 @@ type Class uint8
 // The zero value is Other (the default for codepoints with no specific class).
 // These values are stored directly in the trie.
 const (
-	Other              Class = iota // GCB=Other (and InCB=None)
-	CR                              // GCB=CR
-	LF                              // GCB=LF
-	Control                         // GCB=Control
-	Extend                          // GCB=Extend (and InCB=None)
-	ZWJ                             // GCB=ZWJ (U+200D)
-	Regional_Indicator              // GCB=Regional_Indicator
-	Prepend                         // GCB=Prepend
-	SpacingMark                     // GCB=SpacingMark
-	L                               // GCB=L (Hangul leading jamo)
-	V                               // GCB=V (Hangul vowel jamo)
-	T                               // GCB=T (Hangul trailing jamo)
-	LV                              // GCB=LV (Hangul LV syllable)
-	LVT                             // GCB=LVT (Hangul LVT syllable)
-	Extended_Pictographic            // Extended_Pictographic=Yes
-	InCBLinker                       // InCB=Linker
-	InCBConsonant                    // InCB=Consonant
-	InCBExtend                       // InCB=Extend
+	Other                 Class = iota // GCB=Other (and InCB=None)
+	CR                                 // GCB=CR
+	LF                                 // GCB=LF
+	Control                            // GCB=Control
+	Extend                             // GCB=Extend (and InCB=None)
+	ZWJ                                // GCB=ZWJ (U+200D)
+	Regional_Indicator                 // GCB=Regional_Indicator
+	Prepend                            // GCB=Prepend
+	SpacingMark                        // GCB=SpacingMark
+	L                                  // GCB=L (Hangul leading jamo)
+	V                                  // GCB=V (Hangul vowel jamo)
+	T                                  // GCB=T (Hangul trailing jamo)
+	LV                                 // GCB=LV (Hangul LV syllable)
+	LVT                                // GCB=LVT (Hangul LVT syllable)
+	Extended_Pictographic              // Extended_Pictographic=Yes
+	InCBLinker                         // InCB=Linker
+	InCBConsonant                      // InCB=Consonant
+	InCBExtend                         // InCB=Extend
 )
 
 const lastCP = uint8(InCBExtend)

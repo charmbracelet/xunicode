@@ -31,7 +31,7 @@ func CodeSize(s string) (int, error) {
 	}
 	defer os.RemoveAll(tmpdir)
 	filename := filepath.Join(tmpdir, "main.go")
-	if err := os.WriteFile(filename, []byte(s), 0644); err != nil {
+	if err := os.WriteFile(filename, []byte(s), 0o644); err != nil {
 		return 0, fmt.Errorf("testtext: failed to write main.go: %v", err)
 	}
 

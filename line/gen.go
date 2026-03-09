@@ -240,7 +240,6 @@ func genTables() {
 	w := gen.NewCodeWriter()
 	defer w.WriteVersionedGoFile("tables.go", "line")
 
-	fmt.Fprintf(w, "import %q\n\n", "github.com/charmbracelet/xunicode/internal/segmenter")
 	gen.WriteUnicodeVersion(w)
 
 	t := triegen.NewTrie("line")
@@ -257,7 +256,7 @@ func genTables() {
 
 	rules := buildRules(gen.UnicodeVersion())
 	bt := segmenter.Build(rules, stride, sot, eot, lastCP)
-	segmenter.WriteBreakTable(w, "ruleData", bt, "lineTrie", uint8(SA))
+	segmenter.WriteBreakTable(w, bt)
 }
 
 func p(v ...uint8) []uint8 { return v }
@@ -431,8 +430,8 @@ func buildRules(unicodeVersion string) []segmenter.Rule {
 		WipeValue: segmenter.NoMatch,
 		Overrides: func() map[uint8]uint8 {
 			m := map[uint8]uint8{
-				eot:        segmenter.Break,
-				uint8(SP):  interm(QU_SP),
+				eot:       segmenter.Break,
+				uint8(SP): interm(QU_SP),
 			}
 			for _, op := range opAll {
 				m[op] = segmenter.Keep

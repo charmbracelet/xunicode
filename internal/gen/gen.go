@@ -16,7 +16,7 @@
 // IANA data can also optionally be mirrored by putting it in the iana directory
 // rooted at the top of the local mirror. Beware, though, that IANA data is not
 // versioned. So it is up to the developer to use the right version.
-package gen // import "golang.org/x/text/internal/gen"
+package gen // import "github.com/charmbracelet/xunicode/internal/gen"
 
 import (
 	"bytes"
@@ -148,7 +148,7 @@ var (
 	localDir string
 )
 
-const permissions = 0755
+const permissions = 0o755
 
 func localReadmeFile() (string, error) {
 	p, err := build.Import("golang.org/x/text", "", build.FindOnly)
@@ -286,7 +286,7 @@ func updateBuildTags(pattern string) {
 			continue
 		}
 		b = regexp.MustCompile(`//go:build.*\n`).ReplaceAll(b, []byte(tagLines(t.buildTags)))
-		err = os.WriteFile(oldFile, b, 0644)
+		err = os.WriteFile(oldFile, b, 0o644)
 		if err != nil {
 			log.Fatal(err)
 		}

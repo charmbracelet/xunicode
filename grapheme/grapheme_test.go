@@ -131,6 +131,37 @@ func parseTestLine(t *testing.T, lineNum int, line string) (input []byte, segmen
 	return buf, segments
 }
 
+func TestProperties(t *testing.T) {
+	tests := []struct {
+		name  string
+		input string
+		class Class
+	}{
+		{"ASCII", "A", Other},
+		{"CJK Wide", "世", Other},
+		{"Ambiguous", "§", Other},
+		{"Base+Combining", "e\u0301", Other},
+		{"CR", "\r", CR},
+		{"LF", "\n", LF},
+		{"DEL", "0x7f", Other},
+		{"Control 0", "\u0000", Control},
+		{"Control 1", "\u009b", Control},
+		{"Regional Indicator pair", "\U0001F1FA\U0001F1F8", Regional_Indicator},
+		{"Extended Pictographic", "\U0001F600", Extended_Pictographic},
+		{"Hangul LV", "\uAC00", LV},
+		{"CJK followed by ASCII", "世A", Other},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			p, _ := LookupString(tt.input)
+			if got := p.Class(); got != tt.class {
+				t.Errorf("Class() = %d, want %d", got, tt.class)
+			}
+		})
+	}
+}
+
 // fmtSegments formats segments as a list of hex-encoded codepoint sequences
 // for readable error messages.
 func fmtSegments(segs []string) []string {

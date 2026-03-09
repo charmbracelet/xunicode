@@ -6,6 +6,17 @@ import (
 	"golang.org/x/text/language"
 )
 
+var trie = newSentenceTrie(0)
+
+var ruleData = segmenter.RuleBreakData{
+	PropertyLookup:        trie.lookup,
+	BreakStateTable:       breakTable[:],
+	PropertyCount:         stride,
+	LastCodepointProperty: lastCP,
+	SOTProperty:           sot,
+	EOTProperty:           eot,
+}
+
 // Segmenter iterates over the sentences in a byte slice.
 // The usage pattern is:
 //

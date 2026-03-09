@@ -12,6 +12,18 @@ import (
 	"golang.org/x/text/language"
 )
 
+var trie = newLineTrie(0)
+
+var ruleData = segmenter.RuleBreakData{
+	PropertyLookup:        trie.lookup,
+	BreakStateTable:       breakTable[:],
+	PropertyCount:         stride,
+	LastCodepointProperty: lastCP,
+	SOTProperty:           sot,
+	EOTProperty:           eot,
+	ComplexProp:           uint8(SA),
+}
+
 // Strictness controls the strictness of line-breaking rules,
 // corresponding to the CSS line-break property.
 //

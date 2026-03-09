@@ -157,7 +157,8 @@ func Compact(c Compacter) Option {
 	return func(b *builder) error {
 		b.Compactions = append(b.Compactions, compaction{
 			c:       c,
-			Handler: c.Handler() + "(n, b)"})
+			Handler: c.Handler() + "(n, b)",
+		})
 		return nil
 	}
 }

@@ -96,7 +96,7 @@ func TestPack(t *testing.T) {
 		{"alternate1", alternate1, 0, 0xffff0770, true},
 		{"alternate2", alternate2, 0, 0x0000f880, true},
 
-		{"just64", &just64{0x0f0f0f0f}, 00, 0xf0f0f0f, true},
+		{"just64", &just64{0x0f0f0f0f}, 0o0, 0xf0f0f0f, true},
 		{"just64", &just64{0x0f0f0f0f}, 64, 0xf0f0f0f, true},
 		{"just64", &just64{0xffffFFFF}, 64, 0xffffffff, true},
 		{"to uint8", &toUint8{true}, 0, 0x80, true},

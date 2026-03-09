@@ -6,6 +6,17 @@ import (
 	"golang.org/x/text/language"
 )
 
+var trie = newWordTrie(0)
+
+var ruleData = segmenter.RuleBreakData{
+	PropertyLookup:        trie.lookup,
+	BreakStateTable:       breakTable[:],
+	PropertyCount:         stride,
+	LastCodepointProperty: lastCP,
+	SOTProperty:           sot,
+	EOTProperty:           eot,
+}
+
 // WordType classifies a word segment.
 type WordType uint8
 

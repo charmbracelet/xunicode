@@ -4,8 +4,6 @@
 
 package sentence
 
-import "github.com/charmbracelet/xunicode/internal/segmenter"
-
 // UnicodeVersion is the Unicode version from which the tables in this package are derived.
 const UnicodeVersion = "15.0.0"
 
@@ -3825,16 +3823,6 @@ var breakTable = [...]uint8{
 	253, 253, 255, 253, 253, 253, 253, 253, 253, 253, 253, 253, 253, 253, 253, 253, 253, 253, 253, 253, 253, 253, 253, 253, 253, 253, 253, 253,
 	255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
 	255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 253,
-}
-
-var trie = sentenceTrie{}
-var ruleData = segmenter.RuleBreakData{
-	PropertyLookup:        trie.lookup,
-	BreakStateTable:       breakTable[:],
-	PropertyCount:         28,
-	LastCodepointProperty: 14,
-	SOTProperty:           26,
-	EOTProperty:           27,
 }
 
 // Total table size 26944 bytes (26KiB); checksum: 811C9DC5

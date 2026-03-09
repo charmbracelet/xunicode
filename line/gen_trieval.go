@@ -84,7 +84,7 @@ const (
 // Only non-excluded base properties have absorption states.
 // Excluded (BK, CR, LF, NL, SP, ZW, CM, ZWJ) do not absorb per LB9.
 const (
-	AI_XX         = lastBaseProperty + 1 + iota
+	AI_XX = lastBaseProperty + 1 + iota
 	AK_XX
 	AL_XX
 	AL_DC_XX
@@ -138,17 +138,17 @@ const (
 
 // Chain/combined states (not codepoint-advancing).
 const (
-	OP_SP = lastCP + 1 + iota // OP SP*
-	QU_SP                     // QU_PI SP* (× OP)
-	SP_QU                     // SP × QU_PF (keep)
-	CB_QU                     // CB × QU_PF (keep, LB20 exception)
-	CL_CP_SP                  // (CL|CP) SP*
-	B2_SP                     // B2 SP*
-	HL_HY                     // HL × (HY|BA)
-	AK_VI                     // (AK|AL_DC|AS) × VI
-	AK_AK                     // Aksara chain
-	AK_DC                     // aksara chain, last was [◌] (U+25CC)
-	RI_RI                     // RI × RI pair
+	OP_SP    = lastCP + 1 + iota // OP SP*
+	QU_SP                        // QU_PI SP* (× OP)
+	SP_QU                        // SP × QU_PF (keep)
+	CB_QU                        // CB × QU_PF (keep, LB20 exception)
+	CL_CP_SP                     // (CL|CP) SP*
+	B2_SP                        // B2 SP*
+	HL_HY                        // HL × (HY|BA)
+	AK_VI                        // (AK|AL_DC|AS) × VI
+	AK_AK                        // Aksara chain
+	AK_DC                        // aksara chain, last was [◌] (U+25CC)
+	RI_RI                        // RI × RI pair
 
 	NU_OP       // (PR|PO) × OP, awaiting NU
 	NU_Num      // numeric context (NU seen)
