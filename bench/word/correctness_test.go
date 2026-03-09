@@ -1,7 +1,3 @@
-// Copyright 2026 The Go Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style
-// license that can be found in the LICENSE file.
-
 package bench
 
 import (
@@ -18,15 +14,15 @@ import (
 	"testing"
 
 	"github.com/blevesearch/segment"
+	"github.com/charmbracelet/xunicode/word"
 	uwords "github.com/clipperhouse/uax29/v2/words"
 	"github.com/rivo/uniseg"
-	"golang.org/x/text/unicode/word"
 )
 
 type wordResult struct {
 	start, end int
-	bytes     []byte
-	text      string
+	bytes      []byte
+	text       string
 }
 
 func extractXTextWords(data []byte) []wordResult {

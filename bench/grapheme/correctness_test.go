@@ -1,7 +1,3 @@
-// Copyright 2026 The Go Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style
-// license that can be found in the LICENSE file.
-
 package bench
 
 import (
@@ -17,15 +13,15 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/charmbracelet/xunicode/grapheme"
 	ugraphemes "github.com/clipperhouse/uax29/v2/graphemes"
 	"github.com/rivo/uniseg"
-	"golang.org/x/text/unicode/grapheme"
 )
 
 type graphemeResult struct {
 	start, end int
-	bytes     []byte
-	text      string
+	bytes      []byte
+	text       string
 }
 
 func extractXTextGraphemes(data []byte) []graphemeResult {

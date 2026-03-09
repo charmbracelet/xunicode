@@ -1,7 +1,3 @@
-// Copyright 2026 The Go Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style
-// license that can be found in the LICENSE file.
-
 package bench
 
 import (
@@ -9,10 +5,10 @@ import (
 	"strings"
 	"testing"
 
+	scuax29 "github.com/SCKelemen/unicode/uax29"
+	"github.com/charmbracelet/xunicode/sentence"
 	usentences "github.com/clipperhouse/uax29/v2/sentences"
 	"github.com/rivo/uniseg"
-	scuax29 "github.com/SCKelemen/unicode/uax29"
-	"golang.org/x/text/unicode/sentence"
 )
 
 // Corpora covering different script and complexity profiles for sentence
@@ -479,8 +475,8 @@ func BenchmarkReader(b *testing.B) {
 
 type sentResult struct {
 	start, end int
-	bytes     []byte
-	text      string
+	bytes      []byte
+	text       string
 }
 
 func extractXTextSentences(data []byte) []sentResult {

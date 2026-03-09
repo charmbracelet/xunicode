@@ -1,30 +1,26 @@
-// Copyright 2026 The Go Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style
-// license that can be found in the LICENSE file.
-
 package bench
 
 import (
 	"strings"
 	"testing"
 
-	ugraphemes "github.com/clipperhouse/uax29/v2/graphemes"
 	scuax29 "github.com/SCKelemen/unicode/uax29"
+	"github.com/charmbracelet/xunicode/grapheme"
+	ugraphemes "github.com/clipperhouse/uax29/v2/graphemes"
 	"github.com/rivo/uniseg"
-	"golang.org/x/text/unicode/grapheme"
 )
 
 // Corpora covering different script and complexity profiles.
 var corpora = map[string]string{
-	"ASCII":     strings.Repeat("The quick brown fox jumps over the lazy dog. ", 100),
-	"Latin":     strings.Repeat("Ré\u0301sume\u0301 naïve café über straße Ångström. ", 100),
-	"CJK":       strings.Repeat("天地玄黃宇宙洪荒日月盈昃辰宿列張。", 100),
-	"Hangul":    strings.Repeat("한국어 텍스트 분할 테스트입니다. ", 100),
-	"Emoji":     strings.Repeat("👨‍👩‍👧‍👦👍🏽🇩🇪🏳️‍🌈🧑‍💻👩‍❤️‍👨", 50),
-	"Arabic":    strings.Repeat("بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ ", 100),
-	"Devanagari": strings.Repeat("हिन्दी पाठ विभाजन परीक्षण है। ", 100),
-	"Mixed":     strings.Repeat("Hello 世界! 🇺🇸 café 한국 हिन्दी عربي ", 100),
-	"TwoChar":   "ab",
+	"ASCII":       strings.Repeat("The quick brown fox jumps over the lazy dog. ", 100),
+	"Latin":       strings.Repeat("Ré\u0301sume\u0301 naïve café über straße Ångström. ", 100),
+	"CJK":         strings.Repeat("天地玄黃宇宙洪荒日月盈昃辰宿列張。", 100),
+	"Hangul":      strings.Repeat("한국어 텍스트 분할 테스트입니다. ", 100),
+	"Emoji":       strings.Repeat("👨‍👩‍👧‍👦👍🏽🇩🇪🏳️‍🌈🧑‍💻👩‍❤️‍👨", 50),
+	"Arabic":      strings.Repeat("بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ ", 100),
+	"Devanagari":  strings.Repeat("हिन्दी पाठ विभाजन परीक्षण है। ", 100),
+	"Mixed":       strings.Repeat("Hello 世界! 🇺🇸 café 한국 हिन्दी عربي ", 100),
+	"TwoChar":     "ab",
 	"SingleEmoji": "👨‍👩‍👧‍👦",
 }
 
