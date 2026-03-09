@@ -13,8 +13,8 @@ import (
 	"strings"
 	"testing"
 
+	"charm.land/xunicode/word"
 	"github.com/blevesearch/segment"
-	"github.com/charmbracelet/xunicode/word"
 	uwords "github.com/clipperhouse/uax29/v2/words"
 	"github.com/rivo/uniseg"
 )

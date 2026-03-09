@@ -4,7 +4,7 @@
 
 // Package testtext contains test data that is of common use to the text
 // repository.
-package testtext // import "github.com/charmbracelet/xunicode/internal/testtext"
+package testtext // import "charm.land/xunicode/internal/testtext"
 
 const (
 

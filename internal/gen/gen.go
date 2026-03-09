@@ -16,7 +16,7 @@
 // IANA data can also optionally be mirrored by putting it in the iana directory
 // rooted at the top of the local mirror. Beware, though, that IANA data is not
 // versioned. So it is up to the developer to use the right version.
-package gen // import "github.com/charmbracelet/xunicode/internal/gen"
+package gen // import "charm.land/xunicode/internal/gen"
 
 import (
 	"bytes"

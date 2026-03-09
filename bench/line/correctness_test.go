@@ -13,8 +13,8 @@ import (
 	"testing"
 	"unicode/utf8"
 
+	"charm.land/xunicode/line"
 	"github.com/SCKelemen/unicode/uax14"
-	"github.com/charmbracelet/xunicode/line"
 	"github.com/rivo/uniseg"
 )
 

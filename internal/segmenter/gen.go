@@ -3,7 +3,7 @@ package segmenter
 import (
 	"fmt"
 
-	"github.com/charmbracelet/xunicode/internal/gen"
+	"charm.land/xunicode/internal/gen"
 )
 
 // WriteBreakTable writes the breakTable array and a RuleBreakData struct

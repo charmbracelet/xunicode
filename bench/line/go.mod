@@ -2,7 +2,7 @@ module bench
 
 go 1.25.5
 
-replace github.com/charmbracelet/xunicode => ../..
+replace charm.land/xunicode => ../..
 
 require (
 	github.com/SCKelemen/unicode v1.1.1

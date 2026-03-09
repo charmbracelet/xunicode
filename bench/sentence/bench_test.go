@@ -5,8 +5,8 @@ import (
 	"strings"
 	"testing"
 
+	"charm.land/xunicode/sentence"
 	scuax29 "github.com/SCKelemen/unicode/uax29"
-	"github.com/charmbracelet/xunicode/sentence"
 	usentences "github.com/clipperhouse/uax29/v2/sentences"
 	"github.com/rivo/uniseg"
 )

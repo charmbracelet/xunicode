@@ -18,10 +18,10 @@ package main
 
 import (
     "fmt"
-    "github.com/charmbracelet/xunicode/grapheme"
-    "github.com/charmbracelet/xunicode/word"
-    "github.com/charmbracelet/xunicode/sentence"
-    "github.com/charmbracelet/xunicode/line"
+    "charm.land/xunicode/grapheme"
+    "charm.land/xunicode/word"
+    "charm.land/xunicode/sentence"
+    "charm.land/xunicode/line"
 )
 
 func main() {
@@ -90,7 +90,7 @@ func main() {
 
 See [contributing][contribute].
 
-[contribute]: https://github.com/charmbracelet/xunicode/contribute
+[contribute]: https://charm.land/xunicode/contribute
 
 ## Feedback
 

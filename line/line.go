@@ -7,8 +7,8 @@
 package line
 
 import (
-	"github.com/charmbracelet/xunicode/grapheme"
-	"github.com/charmbracelet/xunicode/internal/segmenter"
+	"charm.land/xunicode/grapheme"
+	"charm.land/xunicode/internal/segmenter"
 	"golang.org/x/text/language"
 )
 

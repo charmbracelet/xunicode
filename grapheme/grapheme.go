@@ -3,7 +3,7 @@
 package grapheme
 
 import (
-	"github.com/charmbracelet/xunicode/internal/segmenter"
+	"charm.land/xunicode/internal/segmenter"
 )
 
 var trie = newGraphemeTrie(0)

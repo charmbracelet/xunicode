@@ -8,8 +8,8 @@ import (
 	"testing"
 	"unicode/utf8"
 
-	"github.com/charmbracelet/xunicode/internal/gen"
-	"github.com/charmbracelet/xunicode/internal/testtext"
+	"charm.land/xunicode/internal/gen"
+	"charm.land/xunicode/internal/testtext"
 )
 
 func TestConformance(t *testing.T) {

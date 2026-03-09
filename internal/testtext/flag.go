@@ -8,7 +8,7 @@ import (
 	"flag"
 	"testing"
 
-	"github.com/charmbracelet/xunicode/internal/gen"
+	"charm.land/xunicode/internal/gen"
 )
 
 var long = flag.Bool("long", false,

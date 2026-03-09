@@ -3,7 +3,7 @@ package line_test
 import (
 	"fmt"
 
-	"github.com/charmbracelet/xunicode/line"
+	"charm.land/xunicode/line"
 )
 
 func ExampleNewSegmenter() {

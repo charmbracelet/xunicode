@@ -13,7 +13,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/charmbracelet/xunicode/grapheme"
+	"charm.land/xunicode/grapheme"
 	ugraphemes "github.com/clipperhouse/uax29/v2/graphemes"
 	"github.com/rivo/uniseg"
 )

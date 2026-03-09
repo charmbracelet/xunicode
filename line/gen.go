@@ -8,10 +8,10 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/charmbracelet/xunicode/internal/gen"
-	"github.com/charmbracelet/xunicode/internal/segmenter"
-	"github.com/charmbracelet/xunicode/internal/triegen"
-	"github.com/charmbracelet/xunicode/internal/ucd"
+	"charm.land/xunicode/internal/gen"
+	"charm.land/xunicode/internal/segmenter"
+	"charm.land/xunicode/internal/triegen"
+	"charm.land/xunicode/internal/ucd"
 )
 
 // lbMap maps Line_Break UCD property value strings to property indices.

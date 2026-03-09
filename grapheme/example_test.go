@@ -3,7 +3,7 @@ package grapheme_test
 import (
 	"fmt"
 
-	"github.com/charmbracelet/xunicode/grapheme"
+	"charm.land/xunicode/grapheme"
 )
 
 func ExampleSegmenter() {

@@ -2,7 +2,7 @@
 package word
 
 import (
-	"github.com/charmbracelet/xunicode/internal/segmenter"
+	"charm.land/xunicode/internal/segmenter"
 	"golang.org/x/text/language"
 )
 

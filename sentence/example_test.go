@@ -3,7 +3,7 @@ package sentence_test
 import (
 	"fmt"
 
-	"github.com/charmbracelet/xunicode/sentence"
+	"charm.land/xunicode/sentence"
 )
 
 func ExampleSegmenter() {

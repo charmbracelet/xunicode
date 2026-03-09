@@ -1,4 +1,4 @@
-module github.com/charmbracelet/xunicode
+module charm.land/xunicode
 
 go 1.25.5
 

@@ -3,7 +3,7 @@ package word_test
 import (
 	"fmt"
 
-	"github.com/charmbracelet/xunicode/word"
+	"charm.land/xunicode/word"
 )
 
 func ExampleSegmenter() {

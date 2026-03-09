@@ -4,8 +4,8 @@ import (
 	"strings"
 	"testing"
 
+	"charm.land/xunicode/line"
 	sckelemen_uax14 "github.com/SCKelemen/unicode/uax14"
-	"github.com/charmbracelet/xunicode/line"
 	"github.com/clipperhouse/uax14"
 	"github.com/rivo/uniseg"
 )

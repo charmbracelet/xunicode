@@ -4,8 +4,8 @@ import (
 	"strings"
 	"testing"
 
+	"charm.land/xunicode/grapheme"
 	scuax29 "github.com/SCKelemen/unicode/uax29"
-	"github.com/charmbracelet/xunicode/grapheme"
 	ugraphemes "github.com/clipperhouse/uax29/v2/graphemes"
 	"github.com/rivo/uniseg"
 )

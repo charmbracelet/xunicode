@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/charmbracelet/xunicode/internal/ucd"
+	"charm.land/xunicode/internal/ucd"
 )
 
 func Example() {

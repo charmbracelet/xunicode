@@ -10,7 +10,7 @@ import (
 	"math/rand"
 	"unicode"
 
-	"github.com/charmbracelet/xunicode/internal/triegen"
+	"charm.land/xunicode/internal/triegen"
 )
 
 const seed = 0x12345

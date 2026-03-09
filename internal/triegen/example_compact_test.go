@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/charmbracelet/xunicode/internal/triegen"
+	"charm.land/xunicode/internal/triegen"
 )
 
 func ExampleCompacter() {
