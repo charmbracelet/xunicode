@@ -112,7 +112,7 @@ segmentation. This includes but is not limited to:
 - [github.com/rivo/uniseg](https://github.com/rivo/uniseg): A Go library for Unicode text segmentation that provides a simple API for segmenting text into grapheme clusters, words, sentences, and line breaks.
 - [github.com/unicode-org/icu4x](https://github.com/unicode-org/icu4x): A project that provides a set of libraries for Unicode support in Rust, including text segmentation algorithms.
 - [github.com/unicode-org/icu](https://github.com/unicode-org/icu): The International Components for Unicode (ICU) project, which provides a comprehensive set of libraries for Unicode support, including text segmentation algorithms.
-- [golang.org/x/text](https://golang.org/x/text): The Go team's official text processing library, which includes Unicode segmentation algorithms.
+- [golang.org/x/text](https://golang.org/x/text): The Go team's official text processing library.
 
 ## License
 
