@@ -86,6 +86,42 @@ func main() {
 	// [22:26] "you?"
 ```
 
+## Contributing
+
+See [contributing][contribute].
+
+[contribute]: https://github.com/charmbracelet/xunicode/contribute
+
+## Feedback
+
+We’d love to hear your thoughts on this project. Feel free to drop us a note!
+
+- [Twitter](https://twitter.com/charmcli)
+- [The Fediverse](https://mastodon.social/@charmcli)
+- [Discord](https://charm.sh/chat)
+
+## Acknowledgments
+
+XUnicode is inspired by and based on the work of the Go team, the Unicode
+Consortium, and many Go libraries that have implemented Unicode text
+segmentation. This includes but is not limited to:
+
+- [github.com/blevesearch/segment](https://github.com/belvesearch/segment): A Go library for text segmentation that includes support for Unicode text segmentation algorithms.
+- [github.com/clipperhouse/uax14](https://github.com/clipperhouse/uax14): A Go library that implements the Unicode Line Breaking Algorithm as defined in UAX#14.
+- [github.com/clipperhouse/uax29](https://github.com/clipperhouse/uax29): A Go library that implements the Unicode Text Segmentation algorithms as defined in UAX#29.
+- [github.com/rivo/uniseg](https://github.com/rivo/uniseg): A Go library for Unicode text segmentation that provides a simple API for segmenting text into grapheme clusters, words, sentences, and line breaks.
+- [github.com/unicode-org/icu4x](https://github.com/unicode-org/icu4x): A project that provides a set of libraries for Unicode support in Rust, including text segmentation algorithms.
+- [github.com/unicode-org/icu](https://github.com/unicode-org/icu): The International Components for Unicode (ICU) project, which provides a comprehensive set of libraries for Unicode support, including text segmentation algorithms.
+- [golang.org/x/text](https://golang.org/x/text): The Go team's official text processing library, which includes Unicode segmentation algorithms.
+
 ## License
 
-BSD and MIT licensed. See [LICENSE-BSD](LICENSE-BSD) and [LICENSE-MIT](LICENSE-MIT) for details.
+[BSD](LICENSE-BSD) and [Apache 2.0](LICENSE-APACHE)
+
+---
+
+Part of [Charm](https://charm.sh).
+
+<a href="https://charm.sh/"><img alt="The Charm logo" src="https://stuff.charm.sh/charm-banner-next.jpg" width="400"></a>
+
+Charm热爱开源 • Charm loves open source • نحنُ نحب المصادر المفتوحة
