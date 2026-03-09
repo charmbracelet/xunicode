@@ -49,9 +49,8 @@ func LookupString(s string) (Properties, int) {
 }
 
 // LookupRune returns properties for r.
-func LookupRune(r rune) Properties {
+func LookupRune(r rune) (Properties, int) {
 	var buf [4]byte
 	n := utf8.EncodeRune(buf[:], r)
-	v, _ := trie.lookup(buf[:n])
-	return Properties{entry: v}
+	return Lookup(buf[:n])
 }
