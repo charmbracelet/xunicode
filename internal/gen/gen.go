@@ -151,7 +151,7 @@ var (
 const permissions = 0o755
 
 func localReadmeFile() (string, error) {
-	p, err := build.Import("golang.org/x/text", "", build.FindOnly)
+	p, err := build.Import("charm.land/xunicode", "", build.FindOnly)
 	if err != nil {
 		return "", fmt.Errorf("Could not locate package: %v", err)
 	}
