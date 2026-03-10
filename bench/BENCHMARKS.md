@@ -37,6 +37,7 @@ This report analyzes the performance, memory usage, and throughput of various Un
 - **uniseg_Step**: `github.com/rivo/uniseg` (Step-by-step iteration)
 - **uax29**: `github.com/clipperhouse/uax29` (grapheme segmentation)
 - **sckelemen_uax29**: `github.com/sckelemen/uax29` (older implementation)
+- **typesetting**: `github.com/go-text/typesetting/segmenter` v0.3.4
 
 #### Results by Test Category
 
@@ -47,51 +48,61 @@ This report analyzes the performance, memory usage, and throughput of various Un
 |                 | uniseg_Step      | 345,378      | 13.03             | 0         | 0        |
 |                 | uniseg_Graphemes | 347,207      | 12.96             | 0         | 0        |
 |                 | sckelemen_uax29  | 17,876,852   | 0.25              | 18        | 220,408  |
+|                 | typesetting      | 195,473      | 23.02             | 16        | 76,408   |
 | **Latin**       | x_text           | 20,769       | 245.56            | 0         | 0        |
 |                 | uax29            | 19,299       | 264.27            | 0         | 0        |
 |                 | uniseg_Step      | 347,985      | 14.66             | 0         | 0        |
 |                 | uniseg_Graphemes | 355,437      | 14.35             | 0         | 0        |
 |                 | sckelemen_uax29  | 17,443,125   | 0.29              | 18        | 212,216  |
+|                 | typesetting      | 183,872      | 27.74             | 16        | 76,408   |
 | **CJK**         | x_text           | 17,511       | 291.25            | 0         | 0        |
 |                 | uax29            | 14,666       | 347.74            | 0         | 0        |
 |                 | uniseg_Step      | 219,436      | 23.24             | 0         | 0        |
 |                 | uniseg_Graphemes | 219,956      | 23.19             | 0         | 0        |
 |                 | sckelemen_uax29  | 4,104,478    | 1.24              | 15        | 73,720   |
+|                 | typesetting      | 78,080       | 65.32             | 13        | 22,904   |
 | **Hangul**      | x_text           | 20,649       | 227.62            | 0         | 0        |
 |                 | uax29            | 22,424       | 209.60            | 0         | 0        |
 |                 | uniseg_Step      | 230,056      | 20.43             | 0         | 0        |
 |                 | uniseg_Graphemes | 235,088      | 19.99             | 0         | 0        |
 |                 | sckelemen_uax29  | 5,193,365    | 0.91              | 16        | 100,986  |
+|                 | typesetting      | 95,014       | 49.47             | 13        | 23,160   |
 | **Emoji**       | x_text           | 8,853        | 485.72            | 0         | 0        |
 |                 | uax29            | 9,007        | 477.40            | 0         | 0        |
 |                 | uniseg_Step      | 120,538      | 35.67             | 0         | 0        |
 |                 | uniseg_Graphemes | 121,045      | 35.53             | 0         | 0        |
 |                 | sckelemen_uax29  | 675,220      | 6.37              | 12        | 17,912   |
+|                 | typesetting      | 53,692       | 80.09             | 12        | 14,200   |
 | **Arabic**      | x_text           | 31,041       | 244.84            | 0         | 0        |
 |                 | uax29            | 31,371       | 242.27            | 0         | 0        |
 |                 | uniseg_Step      | 394,267      | 19.28             | 0         | 0        |
 |                 | uniseg_Graphemes | 398,284      | 19.08             | 0         | 0        |
 |                 | sckelemen_uax29  | 11,352,926   | 0.67              | 16        | 117,368  |
+|                 | typesetting      | 166,674      | 45.60             | 15        | 53,880   |
 | **Devanagari**  | x_text           | 28,011       | 285.60            | 0         | 0        |
 |                 | uax29            | 27,927       | 286.47            | 0         | 0        |
 |                 | uniseg_Step      | 316,602      | 25.27             | 0         | 0        |
 |                 | uniseg_Graphemes | 319,221      | 25.06             | 0         | 0        |
 |                 | sckelemen_uax29  | 8,518,291    | 0.94              | 16        | 105,080  |
+|                 | typesetting      | 135,205      | 59.17             | 14        | 36,472   |
 | **Mixed**       | x_text           | 25,144       | 254.54            | 0         | 0        |
 |                 | uax29            | 24,699       | 259.13            | 0         | 0        |
 |                 | uniseg_Step      | 334,100      | 19.16             | 0         | 0        |
 |                 | uniseg_Graphemes | 341,901      | 18.72             | 0         | 0        |
 |                 | sckelemen_uax29  | 12,386,967   | 0.52              | 17        | 150,008  |
+|                 | typesetting      | 146,851      | 43.58             | 15        | 53,240   |
 | **TwoChar**     | x_text           | 8            | 250.06            | 0         | 0        |
 |                 | uax29            | 8.35         | 239.50            | 0         | 0        |
 |                 | uniseg_Step      | 151          | 13.24             | 0         | 0        |
 |                 | uniseg_Graphemes | 156          | 12.82             | 0         | 0        |
 |                 | sckelemen_uax29  | 100          | 19.90             | 4         | 88       |
+|                 | typesetting      | 158          | 12.65             | 2         | 16       |
 | **SingleEmoji** | x_text           | 46           | 546.76            | 0         | 0        |
 |                 | uax29            | 44           | 572.53            | 0         | 0        |
 |                 | uniseg_Step      | 654          | 38.24             | 0         | 0        |
 |                 | uniseg_Graphemes | 657          | 38.05             | 0         | 0        |
 |                 | sckelemen_uax29  | 380          | 65.84             | 3         | 40       |
+|                 | typesetting      | 357          | 70.05             | 4         | 64       |
 
 ### Key Findings (Grapheme Clustering)
 
@@ -603,3 +614,4 @@ The `x_text` implementations demonstrate all four qualities, making them the gol
 - **Benchmark Runs**: 10 iterations per test for statistical stability
 
 All measurements represent average values across 10 runs. Time is measured in nanoseconds per operation, and throughput in megabytes processed per second.
+

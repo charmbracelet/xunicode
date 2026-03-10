@@ -9,6 +9,7 @@ import (
 	scuax29 "github.com/SCKelemen/unicode/uax29"
 	"github.com/blevesearch/segment"
 	uwords "github.com/clipperhouse/uax29/v2/words"
+	"github.com/go-text/typesetting/segmenter"
 	"github.com/rivo/uniseg"
 )
 
@@ -91,6 +92,18 @@ func BenchmarkSegment(b *testing.B) {
 				_ = scuax29.Words(text)
 			}
 		})
+
+		b.Run(name+"/typesetting", func(b *testing.B) {
+			b.SetBytes(int64(len(data)))
+			for range b.N {
+				var seg segmenter.Segmenter
+				seg.InitWithString(text)
+				iter := seg.WordIterator()
+				for iter.Next() {
+					_ = iter.Word()
+				}
+			}
+		})
 	}
 }
 
@@ -157,6 +170,20 @@ func BenchmarkCount(b *testing.B) {
 			b.SetBytes(int64(len(data)))
 			for range b.N {
 				_ = len(scuax29.Words(text))
+			}
+		})
+
+		b.Run(name+"/typesetting", func(b *testing.B) {
+			b.SetBytes(int64(len(data)))
+			for range b.N {
+				n := 0
+				var seg segmenter.Segmenter
+				seg.InitWithString(text)
+				iter := seg.WordIterator()
+				for iter.Next() {
+					n++
+				}
+				_ = n
 			}
 		})
 	}
@@ -263,6 +290,19 @@ func BenchmarkPosition(b *testing.B) {
 				_ = scuax29.Words(text)
 			}
 		})
+
+		b.Run(name+"/typesetting", func(b *testing.B) {
+			b.SetBytes(int64(len(data)))
+			for range b.N {
+				var seg segmenter.Segmenter
+				seg.InitWithString(text)
+				iter := seg.WordIterator()
+				for iter.Next() {
+					w := iter.Word()
+					_, _ = w.Offset, w.Offset+len(w.Text)
+				}
+			}
+		})
 	}
 }
 
@@ -324,6 +364,19 @@ func BenchmarkText(b *testing.B) {
 				_ = scuax29.Words(text)
 			}
 		})
+
+		b.Run(name+"/typesetting", func(b *testing.B) {
+			b.SetBytes(int64(len(data)))
+			for range b.N {
+				var seg segmenter.Segmenter
+				seg.InitWithString(text)
+				iter := seg.WordIterator()
+				for iter.Next() {
+					w := iter.Word()
+					_ = string(w.Text)
+				}
+			}
+		})
 	}
 }
 
@@ -383,6 +436,18 @@ func BenchmarkAllocs(b *testing.B) {
 			b.ReportAllocs()
 			for range b.N {
 				_ = scuax29.Words(text)
+			}
+		})
+
+		b.Run(name+"/typesetting", func(b *testing.B) {
+			b.ReportAllocs()
+			for range b.N {
+				var seg segmenter.Segmenter
+				seg.InitWithString(text)
+				iter := seg.WordIterator()
+				for iter.Next() {
+					_ = iter.Word()
+				}
 			}
 		})
 	}
@@ -453,6 +518,17 @@ func BenchmarkShort(b *testing.B) {
 		b.Run(tc.name+"/sckelemen_uax29", func(b *testing.B) {
 			for range b.N {
 				_ = scuax29.Words(tc.text)
+			}
+		})
+
+		b.Run(tc.name+"/typesetting", func(b *testing.B) {
+			for range b.N {
+				var seg segmenter.Segmenter
+				seg.InitWithString(tc.text)
+				iter := seg.WordIterator()
+				for iter.Next() {
+					_ = iter.Word()
+				}
 			}
 		})
 	}

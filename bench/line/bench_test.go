@@ -7,6 +7,7 @@ import (
 	"charm.land/xunicode/line"
 	sckelemen_uax14 "github.com/SCKelemen/unicode/uax14"
 	"github.com/clipperhouse/uax14"
+	"github.com/go-text/typesetting/segmenter"
 	"github.com/rivo/uniseg"
 )
 
@@ -83,6 +84,18 @@ func BenchmarkSegment(b *testing.B) {
 				}
 			}
 		})
+
+		b.Run(name+"/typesetting", func(b *testing.B) {
+			b.SetBytes(int64(len(data)))
+			for range b.N {
+				var seg segmenter.Segmenter
+				seg.InitWithString(text)
+				iter := seg.LineIterator()
+				for iter.Next() {
+					_ = iter.Line()
+				}
+			}
+		})
 	}
 }
 
@@ -147,6 +160,20 @@ func BenchmarkCount(b *testing.B) {
 				_ = n
 			}
 		})
+
+		b.Run(name+"/typesetting", func(b *testing.B) {
+			b.SetBytes(int64(len(data)))
+			for range b.N {
+				n := 0
+				var seg segmenter.Segmenter
+				seg.InitWithString(text)
+				iter := seg.LineIterator()
+				for iter.Next() {
+					n++
+				}
+				_ = n
+			}
+		})
 	}
 }
 
@@ -185,6 +212,19 @@ func BenchmarkPosition(b *testing.B) {
 				}
 			}
 		})
+
+	b.Run(name+"/typesetting", func(b *testing.B) {
+		b.SetBytes(int64(len(data)))
+		for range b.N {
+			var seg segmenter.Segmenter
+			seg.InitWithString(text)
+			iter := seg.LineIterator()
+			for iter.Next() {
+				l := iter.Line()
+				_, _ = l.Offset, l.Offset+len(l.Text)
+			}
+		}
+	})
 	}
 }
 
@@ -278,6 +318,18 @@ func BenchmarkAllocs(b *testing.B) {
 				}
 			}
 		})
+
+		b.Run(name+"/typesetting", func(b *testing.B) {
+			b.ReportAllocs()
+			for range b.N {
+				var seg segmenter.Segmenter
+				seg.InitWithString(text)
+				iter := seg.LineIterator()
+				for iter.Next() {
+					_ = iter.Line()
+				}
+			}
+		})
 	}
 }
 
@@ -341,6 +393,17 @@ func BenchmarkShort(b *testing.B) {
 					}
 					_ = rest[:adv]
 					rest = rest[adv:]
+				}
+			}
+		})
+
+		b.Run(tc.name+"/typesetting", func(b *testing.B) {
+			for range b.N {
+				var seg segmenter.Segmenter
+				seg.InitWithString(tc.text)
+				iter := seg.LineIterator()
+				for iter.Next() {
+					_ = iter.Line()
 				}
 			}
 		})

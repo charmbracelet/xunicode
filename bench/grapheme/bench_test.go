@@ -7,6 +7,7 @@ import (
 	"charm.land/xunicode/grapheme"
 	scuax29 "github.com/SCKelemen/unicode/uax29"
 	ugraphemes "github.com/clipperhouse/uax29/v2/graphemes"
+	"github.com/go-text/typesetting/segmenter"
 	"github.com/rivo/uniseg"
 )
 
@@ -87,6 +88,18 @@ func BenchmarkSegment(b *testing.B) {
 				_ = scuax29.Graphemes(text)
 			}
 		})
+
+		b.Run(name+"/typesetting", func(b *testing.B) {
+			b.SetBytes(int64(len(data)))
+			for range b.N {
+				var seg segmenter.Segmenter
+				seg.InitWithString(text)
+				iter := seg.GraphemeIterator()
+				for iter.Next() {
+					_ = iter.Grapheme()
+				}
+			}
+		})
 	}
 }
 
@@ -134,6 +147,20 @@ func BenchmarkCount(b *testing.B) {
 			b.SetBytes(int64(len(data)))
 			for range b.N {
 				_ = len(scuax29.Graphemes(text))
+			}
+		})
+
+		b.Run(name+"/typesetting", func(b *testing.B) {
+			b.SetBytes(int64(len(data)))
+			for range b.N {
+				n := 0
+				var seg segmenter.Segmenter
+				seg.InitWithString(text)
+				iter := seg.GraphemeIterator()
+				for iter.Next() {
+					n++
+				}
+				_ = n
 			}
 		})
 	}
@@ -189,6 +216,19 @@ func BenchmarkPosition(b *testing.B) {
 			b.SetBytes(int64(len(data)))
 			for range b.N {
 				_ = scuax29.Graphemes(text)
+			}
+		})
+
+		b.Run(name+"/typesetting", func(b *testing.B) {
+			b.SetBytes(int64(len(data)))
+			for range b.N {
+				var seg segmenter.Segmenter
+				seg.InitWithString(text)
+				iter := seg.GraphemeIterator()
+				for iter.Next() {
+					g := iter.Grapheme()
+					_, _ = g.Offset, g.Offset+len(g.Text)
+				}
 			}
 		})
 	}
@@ -252,6 +292,19 @@ func BenchmarkText(b *testing.B) {
 				_ = scuax29.Graphemes(text)
 			}
 		})
+
+		b.Run(name+"/typesetting", func(b *testing.B) {
+			b.SetBytes(int64(len(data)))
+			for range b.N {
+				var seg segmenter.Segmenter
+				seg.InitWithString(text)
+				iter := seg.GraphemeIterator()
+				for iter.Next() {
+					g := iter.Grapheme()
+					_ = string(g.Text)
+				}
+			}
+		})
 	}
 }
 
@@ -304,6 +357,18 @@ func BenchmarkAllocs(b *testing.B) {
 			b.ReportAllocs()
 			for range b.N {
 				_ = scuax29.Graphemes(text)
+			}
+		})
+
+		b.Run(name+"/typesetting", func(b *testing.B) {
+			b.ReportAllocs()
+			for range b.N {
+				var seg segmenter.Segmenter
+				seg.InitWithString(text)
+				iter := seg.GraphemeIterator()
+				for iter.Next() {
+					_ = iter.Grapheme()
+				}
 			}
 		})
 	}
@@ -362,6 +427,17 @@ func BenchmarkShort(b *testing.B) {
 		b.Run(tc.name+"/sckelemen_uax29", func(b *testing.B) {
 			for range b.N {
 				_ = scuax29.Graphemes(tc.text)
+			}
+		})
+
+		b.Run(tc.name+"/typesetting", func(b *testing.B) {
+			for range b.N {
+				var seg segmenter.Segmenter
+				seg.InitWithString(tc.text)
+				iter := seg.GraphemeIterator()
+				for iter.Next() {
+					_ = iter.Grapheme()
+				}
 			}
 		})
 	}
