@@ -190,7 +190,7 @@ func (b *nfaBuilder) calcTree(n *Node, ruleIdx int, fp map[int]PosSet) treeInfo 
 		p := b.newPos(ruleIdx)
 		p.IsSlash = true
 		return treeInfo{
-			nullable: false,
+			nullable: true,
 			firstpos: PosSet{p.ID},
 			lastpos:  PosSet{p.ID},
 		}

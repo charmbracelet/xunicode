@@ -24,14 +24,15 @@ func Minimize(dfa *DFA) *DFA {
 
 	// Initial partition: group by (accepting, ruleIndex, tag).
 	type stateKey struct {
-		accepting bool
-		ruleIndex int
-		tag       int
-		lookAhead bool
+		accepting          bool
+		ruleIndex          int
+		tag                int
+		lookAhead          bool
+		lookAheadRuleIndex int
 	}
 	keyGroups := make(map[stateKey][]int)
 	for _, s := range dfa.States {
-		k := stateKey{s.Accepting, s.RuleIndex, s.Tag, s.LookAhead}
+		k := stateKey{s.Accepting, s.RuleIndex, s.Tag, s.LookAhead, s.LookAheadRuleIndex}
 		keyGroups[k] = append(keyGroups[k], s.ID)
 	}
 
@@ -79,12 +80,13 @@ func Minimize(dfa *DFA) *DFA {
 	for gi, group := range partition {
 		representative := dfa.States[group[0]]
 		ms := &DFAState{
-			ID:        gi,
-			Trans:     make(map[uint16]int),
-			Accepting: representative.Accepting,
-			RuleIndex: representative.RuleIndex,
-			Tag:       representative.Tag,
-			LookAhead: representative.LookAhead,
+			ID:                 gi,
+			Trans:              make(map[uint16]int),
+			Accepting:          representative.Accepting,
+			RuleIndex:          representative.RuleIndex,
+			Tag:                representative.Tag,
+			LookAhead:          representative.LookAhead,
+			LookAheadRuleIndex: representative.LookAheadRuleIndex,
 		}
 		for cat, target := range representative.Trans {
 			ms.Trans[cat] = groupID[stateToGroup[target]]

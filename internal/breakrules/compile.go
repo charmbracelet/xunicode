@@ -6,12 +6,15 @@ import "fmt"
 type CompileOptions struct {
 	NumCategories    int              // total number of input categories
 	PropertyResolver PropertyResolver // maps property expressions to category ID sets
+	BOFCategory      int              // category ID for {bof} (-1 if unused)
+	EOFCategory      int              // category ID for {eof} (-1 if unused)
 }
 
 // CompileResult holds the output of the compilation pipeline.
 type CompileResult struct {
-	DFA     *DFA
-	RuleSet *RuleSet
+	DFA                *DFA
+	RuleSet            *RuleSet
+	LookAheadHardBreak bool // true if !!lookAheadHardBreak was set
 }
 
 // Compile runs the full compilation pipeline: parse → resolve → NFA → chain → DFA → minimize.
@@ -37,8 +40,17 @@ func Compile(src []byte, opts CompileOptions) (*CompileResult, error) {
 		CalcChainedFollowPos(nfa, rs)
 	}
 
-	dfa := BuildDFA(nfa, opts.NumCategories)
+	dfaOpts := DFAOptions{
+		NumCats:     opts.NumCategories,
+		BOFCategory: opts.BOFCategory,
+		EOFCategory: opts.EOFCategory,
+	}
+	dfa := BuildDFA(nfa, dfaOpts)
 	dfa = Minimize(dfa)
 
-	return &CompileResult{DFA: dfa, RuleSet: rs}, nil
+	return &CompileResult{
+		DFA:                dfa,
+		RuleSet:            rs,
+		LookAheadHardBreak: rs.Controls["lookAheadHardBreak"],
+	}, nil
 }

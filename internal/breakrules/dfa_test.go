@@ -20,7 +20,7 @@ func TestBuildDFASimple(t *testing.T) {
 		}},
 	}
 	nfa := BuildNFA(rs)
-	dfa := BuildDFA(nfa, 2)
+	dfa := BuildDFA(nfa, DFAOptions{NumCats: 2})
 
 	if len(dfa.States) < 2 {
 		t.Fatalf("expected at least 2 states, got %d", len(dfa.States))
@@ -66,7 +66,7 @@ func TestBuildDFAAlternation(t *testing.T) {
 		}},
 	}
 	nfa := BuildNFA(rs)
-	dfa := BuildDFA(nfa, 2)
+	dfa := BuildDFA(nfa, DFAOptions{NumCats: 2})
 
 	start := dfa.States[dfa.StartState]
 
@@ -95,7 +95,7 @@ func TestBuildDFAStar(t *testing.T) {
 		}},
 	}
 	nfa := BuildNFA(rs)
-	dfa := BuildDFA(nfa, 1)
+	dfa := BuildDFA(nfa, DFAOptions{NumCats: 1})
 
 	// Start state should be accepting (star is nullable)
 	start := dfa.States[dfa.StartState]
@@ -140,7 +140,7 @@ func TestBuildDFAMultiRule(t *testing.T) {
 		},
 	}
 	nfa := BuildNFA(rs)
-	dfa := BuildDFA(nfa, 3)
+	dfa := BuildDFA(nfa, DFAOptions{NumCats: 3})
 
 	start := dfa.States[dfa.StartState]
 	next, ok := start.Trans[0]
@@ -188,7 +188,7 @@ func TestBuildDFAWithChaining(t *testing.T) {
 	}
 	nfa := BuildNFA(rs)
 	CalcChainedFollowPos(nfa, rs)
-	dfa := BuildDFA(nfa, 3)
+	dfa := BuildDFA(nfa, DFAOptions{NumCats: 3})
 
 	// Walk: A(0) → B(1) → should reach accepting state
 	start := dfa.States[dfa.StartState]

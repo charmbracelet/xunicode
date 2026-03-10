@@ -9,9 +9,9 @@ func TestMinimizeIdentical(t *testing.T) {
 	dfa := &DFA{
 		NumCats: 2,
 		States: []*DFAState{
-			{ID: 0, Trans: map[uint16]int{0: 1, 1: 2}, RuleIndex: -1, Tag: -1},
-			{ID: 1, Trans: map[uint16]int{}, Accepting: true, RuleIndex: 0, Tag: -1},
-			{ID: 2, Trans: map[uint16]int{}, Accepting: true, RuleIndex: 0, Tag: -1},
+			{ID: 0, Trans: map[uint16]int{0: 1, 1: 2}, RuleIndex: -1, Tag: -1, LookAheadRuleIndex: -1},
+			{ID: 1, Trans: map[uint16]int{}, Accepting: true, RuleIndex: 0, Tag: -1, LookAheadRuleIndex: -1},
+			{ID: 2, Trans: map[uint16]int{}, Accepting: true, RuleIndex: 0, Tag: -1, LookAheadRuleIndex: -1},
 		},
 		StartState: 0,
 	}
@@ -28,9 +28,9 @@ func TestMinimizeDistinct(t *testing.T) {
 	dfa := &DFA{
 		NumCats: 2,
 		States: []*DFAState{
-			{ID: 0, Trans: map[uint16]int{0: 1, 1: 2}, RuleIndex: -1, Tag: -1},
-			{ID: 1, Trans: map[uint16]int{}, Accepting: true, RuleIndex: 0, Tag: -1},
-			{ID: 2, Trans: map[uint16]int{}, Accepting: true, RuleIndex: 1, Tag: -1},
+			{ID: 0, Trans: map[uint16]int{0: 1, 1: 2}, RuleIndex: -1, Tag: -1, LookAheadRuleIndex: -1},
+			{ID: 1, Trans: map[uint16]int{}, Accepting: true, RuleIndex: 0, Tag: -1, LookAheadRuleIndex: -1},
+			{ID: 2, Trans: map[uint16]int{}, Accepting: true, RuleIndex: 1, Tag: -1, LookAheadRuleIndex: -1},
 		},
 		StartState: 0,
 	}
@@ -64,7 +64,7 @@ func TestMinimizePreservesLanguage(t *testing.T) {
 		},
 	}
 	nfa := BuildNFA(rs)
-	dfa := BuildDFA(nfa, 3)
+	dfa := BuildDFA(nfa, DFAOptions{NumCats: 3})
 	min := Minimize(dfa)
 
 	// Should still accept A B and A C.
@@ -101,7 +101,7 @@ func TestMinimizeSingleState(t *testing.T) {
 	dfa := &DFA{
 		NumCats: 1,
 		States: []*DFAState{
-			{ID: 0, Trans: map[uint16]int{}, Accepting: true, RuleIndex: 0, Tag: -1},
+			{ID: 0, Trans: map[uint16]int{}, Accepting: true, RuleIndex: 0, Tag: -1, LookAheadRuleIndex: -1},
 		},
 		StartState: 0,
 	}
