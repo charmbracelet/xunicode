@@ -38,6 +38,7 @@ func BenchmarkSegment(b *testing.B) {
 	for _, name := range corpusNames {
 		text := corpora[name]
 		data := []byte(text)
+		runes := []rune(text)
 
 		b.Run(name+"/x_text", func(b *testing.B) {
 			b.SetBytes(int64(len(data)))
@@ -93,7 +94,7 @@ func BenchmarkSegment(b *testing.B) {
 			b.SetBytes(int64(len(data)))
 			for range b.N {
 				var seg segmenter.Segmenter
-				seg.InitWithString(text)
+				seg.Init(runes)
 				iter := seg.GraphemeIterator()
 				for iter.Next() {
 					_ = iter.Grapheme()
@@ -111,6 +112,7 @@ func BenchmarkCount(b *testing.B) {
 	for _, name := range corpusNames {
 		text := corpora[name]
 		data := []byte(text)
+		runes := []rune(text)
 
 		b.Run(name+"/x_text", func(b *testing.B) {
 			b.SetBytes(int64(len(data)))
@@ -155,7 +157,7 @@ func BenchmarkCount(b *testing.B) {
 			for range b.N {
 				n := 0
 				var seg segmenter.Segmenter
-				seg.InitWithString(text)
+				seg.Init(runes)
 				iter := seg.GraphemeIterator()
 				for iter.Next() {
 					n++
@@ -174,6 +176,7 @@ func BenchmarkPosition(b *testing.B) {
 	for _, name := range corpusNames {
 		text := corpora[name]
 		data := []byte(text)
+		runes := []rune(text)
 
 		b.Run(name+"/x_text", func(b *testing.B) {
 			b.SetBytes(int64(len(data)))
@@ -223,7 +226,7 @@ func BenchmarkPosition(b *testing.B) {
 			b.SetBytes(int64(len(data)))
 			for range b.N {
 				var seg segmenter.Segmenter
-				seg.InitWithString(text)
+				seg.Init(runes)
 				iter := seg.GraphemeIterator()
 				for iter.Next() {
 					g := iter.Grapheme()
@@ -242,6 +245,7 @@ func BenchmarkText(b *testing.B) {
 	for _, name := range corpusNames {
 		text := corpora[name]
 		data := []byte(text)
+		runes := []rune(text)
 
 		b.Run(name+"/x_text", func(b *testing.B) {
 			b.SetBytes(int64(len(data)))
@@ -297,7 +301,7 @@ func BenchmarkText(b *testing.B) {
 			b.SetBytes(int64(len(data)))
 			for range b.N {
 				var seg segmenter.Segmenter
-				seg.InitWithString(text)
+				seg.Init(runes)
 				iter := seg.GraphemeIterator()
 				for iter.Next() {
 					g := iter.Grapheme()
@@ -319,6 +323,7 @@ func BenchmarkAllocs(b *testing.B) {
 		}
 		text := corpora[name]
 		data := []byte(text)
+		runes := []rune(text)
 
 		b.Run(name+"/x_text", func(b *testing.B) {
 			b.ReportAllocs()
@@ -364,7 +369,7 @@ func BenchmarkAllocs(b *testing.B) {
 			b.ReportAllocs()
 			for range b.N {
 				var seg segmenter.Segmenter
-				seg.InitWithString(text)
+				seg.Init(runes)
 				iter := seg.GraphemeIterator()
 				for iter.Next() {
 					_ = iter.Grapheme()
@@ -393,6 +398,7 @@ func BenchmarkShort(b *testing.B) {
 
 	for _, tc := range inputs {
 		data := []byte(tc.text)
+		runes := []rune(tc.text)
 
 		b.Run(tc.name+"/x_text", func(b *testing.B) {
 			for range b.N {
@@ -433,7 +439,7 @@ func BenchmarkShort(b *testing.B) {
 		b.Run(tc.name+"/typesetting", func(b *testing.B) {
 			for range b.N {
 				var seg segmenter.Segmenter
-				seg.InitWithString(tc.text)
+				seg.Init(runes)
 				iter := seg.GraphemeIterator()
 				for iter.Next() {
 					_ = iter.Grapheme()
